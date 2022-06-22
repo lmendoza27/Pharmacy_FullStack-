@@ -160,6 +160,6 @@ php artisan test
 
 Luis Angel Mendoza Chate - email@lmendoza27@autonoma.edu.pe
 
-Project Link: [https://github.com/lmendoza27/Farmacia_FullStack](https://github.com/lmendoza27/Farmacia_FullStack)
+Project Link: [https://github.com/lmendoza27/Pharmacy_FullStack-](https://github.com/lmendoza27/Pharmacy_FullStack-)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
