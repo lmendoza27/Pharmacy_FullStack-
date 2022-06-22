@@ -49,7 +49,7 @@
 
 1. Clonar el proyecto
    ```sh
-   git clone https://github.com/lmendoza27/Farmacia_FullStack.git
+   git clone https://github.com/lmendoza27/Pharmacy_FullStack-.git
    ```
 2. Crear un base de datos `farmacia`
 3. Ingresa al proyecto y realizar los comandos de ejecucion Laravel (`php 8.0 o superior`)
