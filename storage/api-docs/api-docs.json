@@ -1,0 +1,663 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Farmacia",
+        "description": "Esta API se encarga de manejar la información de la Gestión de las Farmacias especificando cada funcionalidad con la que cuenta como la especificación de la misma Entidad",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/"
+        }
+    ],
+    "paths": {
+        "/api/v1/login": {
+            "post": {
+                "tags": [
+                    "Usuario"
+                ],
+                "summary": "Iniciar Sesión",
+                "operationId": "bae68d1c55329ecb6e41f48285840c8f",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "email": "",
+                                    "password": ""
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "email": {
+                                            "type": "string",
+                                            "example": "lmendoza@gmail.com"
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "example": "***********"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/me": {
+            "post": {
+                "tags": [
+                    "Usuario"
+                ],
+                "summary": "Mi Información",
+                "operationId": "75d14c5aceb5db98a7e2714fbbaf5988",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Luis Angel Mendoza Chate"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "lmendoza27@autonoma.edu.pe"
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "example": "$2y$10$rc7vXIE6VyFkzwHrDhiDteC/ciUsnMOuOYAfH2IVBXf/NUqO77f6K"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2021-12-11T09:25:53.000000Z"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2021-12-11T09:25:53.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/logout": {
+            "post": {
+                "tags": [
+                    "Usuario"
+                ],
+                "summary": "Cerrar Sesión",
+                "operationId": "c5cdd87fdbf9d0f95dede875bd023dec",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully logged out"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/refresh": {
+            "post": {
+                "tags": [
+                    "Usuario"
+                ],
+                "summary": "Actualizar Token",
+                "operationId": "afc6804f923fcb8bb20ea47817a33952",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvcmVmcmVzaCIsImlhdCI6MTY1NTU4MjY5NiwiZXhwIjoxNjU1NTg2MzIzLCJuYmYiOjE2NTU1ODI3MjMsImp0aSI6Ikh1anRKNTBONDBUQ21HQUgiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.jPvZDPwWHsF70d405rDVGi9p0uRc7M6X1q2pj7jh_SM"
+                                        },
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": 3600
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/farmacias": {
+            "get": {
+                "tags": [
+                    "Farmacia"
+                ],
+                "summary": "Mostrar Farmacias",
+                "operationId": "cd6133cfbeec708d37c78a777f4e651d",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los usuarios."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Farmacia"
+                ],
+                "summary": "Crear Farmacia",
+                "operationId": "6065180595c26b1d927286c2d8cda7bd",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "nombre": {
+                                                "type": "string"
+                                            },
+                                            "dirección": {
+                                                "type": "string"
+                                            },
+                                            "latitud": {
+                                                "type": "number"
+                                            },
+                                            "longitud": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "nombre": "",
+                                    "dirección": "",
+                                    "latitud": null,
+                                    "longitud": null
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "Botica MBF Pharma"
+                                        },
+                                        "dirección": {
+                                            "type": "string",
+                                            "example": " AV. CESAR CANEVARO MZ. Q - 2, LT. 4 A.H. TREBOL AZUL, Av. César Canevaro, San Juan de Miraflores"
+                                        },
+                                        "latitud": {
+                                            "type": "number",
+                                            "example": -12.1945699
+                                        },
+                                        "longitud": {
+                                            "type": "number",
+                                            "example": -76.966001
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2021-12-11T09:25:53.000000Z"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2021-12-11T09:25:53.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/farmacia/{id}": {
+            "get": {
+                "tags": [
+                    "Farmacia"
+                ],
+                "summary": "Obtener Farmacia",
+                "operationId": "20a6e77afc4372d758628c2ef61ae940",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "Botica MBF Pharma"
+                                        },
+                                        "dirección": {
+                                            "type": "string",
+                                            "example": " AV. CESAR CANEVARO MZ. Q - 2, LT. 4 A.H. TREBOL AZUL, Av. César Canevaro, San Juan de Miraflores"
+                                        },
+                                        "latitud": {
+                                            "type": "number",
+                                            "example": -12.1945699
+                                        },
+                                        "longitud": {
+                                            "type": "number",
+                                            "example": -76.966001
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2021-12-11T09:25:53.000000Z"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2021-12-11T09:25:53.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/farmacias/{id}": {
+            "put": {
+                "tags": [
+                    "Farmacia"
+                ],
+                "summary": "Modificar Farmacia",
+                "operationId": "02f652eac0136c094263f5f8536c2a39",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "nombre": {
+                                                "type": "string"
+                                            },
+                                            "dirección": {
+                                                "type": "string"
+                                            },
+                                            "latitud": {
+                                                "type": "number"
+                                            },
+                                            "longitud": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "nombre": "",
+                                    "dirección": "",
+                                    "latitud": null,
+                                    "longitud": null
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "Botica MBF Pharma"
+                                        },
+                                        "dirección": {
+                                            "type": "string",
+                                            "example": " AV. CESAR CANEVARO MZ. Q - 2, LT. 4 A.H. TREBOL AZUL, Av. César Canevaro, San Juan de Miraflores"
+                                        },
+                                        "latitud": {
+                                            "type": "number",
+                                            "example": -12.1945699
+                                        },
+                                        "longitud": {
+                                            "type": "number",
+                                            "example": -76.966001
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2021-12-11T09:25:53.000000Z"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2021-12-11T09:25:53.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Farmacia"
+                ],
+                "summary": "Borrar Farmacia",
+                "operationId": "635d71332a9c396a4311e8e46c33ab69",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "Farmacia borrada satisfactoriamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/farmacia?lat={lat}&lon={lon}": {
+            "get": {
+                "tags": [
+                    "Farmacia"
+                ],
+                "summary": "Listar Farmacias más cercanas",
+                "operationId": "192074c5903a7138aa7064ceaf817982",
+                "parameters": [
+                    {
+                        "name": "lat",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "lon",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "Botica MBF Pharma"
+                                        },
+                                        "dirección": {
+                                            "type": "string",
+                                            "example": " AV. CESAR CANEVARO MZ. Q - 2, LT. 4 A.H. TREBOL AZUL, Av. César Canevaro, San Juan de Miraflores"
+                                        },
+                                        "latitud": {
+                                            "type": "number",
+                                            "example": -12.1945699
+                                        },
+                                        "longitud": {
+                                            "type": "number",
+                                            "example": -76.966001
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2021-12-11T09:25:53.000000Z"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2021-12-11T09:25:53.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+                "type": "http",
+                "description": "Authorization token obtained from logging in.",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "bearer",
+                "securityScheme": "apiAuth"
+            }
+        }
+    },
+    "security": {
+        "bearer": {
+            "type": "http",
+            "description": "Authorization token obtained from logging in.",
+            "name": "Authorization",
+            "in": "header",
+            "scheme": "bearer",
+            "securityScheme": "apiAuth"
+        }
+    }
+}
