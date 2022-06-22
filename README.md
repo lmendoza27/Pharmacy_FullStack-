@@ -1,68 +1,165 @@
-<<<<<<< HEAD
-# Farmacia_FullStack
-=======
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Desarrollo de Proyecto FullStack - Farmacia
+<div id="top"></div>
+<center>
+<img src="https://bimboesta.000webhostapp.com/svg/Group%2034.svg" width="200">
+</center>
+<br><br><br>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<center>
+<img src="https://myoctocat.com/assets/images/base-octocat.svg" width="200">
+</center>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<br><br><br>
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Built With
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* [Vue.js](https://vuejs.org/)
+* [Laravel](https://laravel.com)
+* [Bootstrap](https://getbootstrap.com)
 
-## Learning Laravel
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Instalación
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Clonar el proyecto
+   ```sh
+   git clone https://github.com/lmendoza27/Farmacia_FullStack.git
+   ```
+2. Crear un base de datos `farmacia`
+3. Ingresa al proyecto y realizar los comandos de ejecucion Laravel (`php 8.0 o superior`)
+   ```sh
+   cd Farmacia_FullStack // Ubicarnos dentro del directorio base del proyecto
+   composer install
+   cp .env.example .env // crear archivo de variables de entorno
+   //actualizar datos de acceso a base de datos
+   php artisan key:generate
+   php artisan jwt:secret
+   php artisan migrate --seed
+   ```
+4. Ejecuta el servicio web
+   ```sh
+   php artisan serve
+   ```
+4. Una vez en el navegador (`http://127.0.0.1:8000/`) inicie sesión con las credenciales predeterminadas:
 
-## Laravel Sponsors
+> Las credenciales de abajo funcionan tanto en el proyecto de Vue.js para determinar las farmacias cercanas como para el ingreso como Administrador...
+   ```txt
+   usuario: lmendoza@autonoma.edu.pe
+   contraseña: password
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Problemática
 
-## Contributing
+<p align="right">Para mejorar la experiencia de un afiliado y/o paciente, la farmacia default que se ofrece para adquirir un medicamento debe ser la más cercana a su ubicación. Para esto, una de las funcionalidades que se necesita es conocer la más cercana a un punto dado (latitud y longitud), tomando en cuenta que este punto es la ubicación del paciente.</p>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Requerimientos 
 
-## Code of Conduct
+* Diseñar e implementar un Admin para el ABM de las farmacias y su ubicación.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+> La administración cuenta con un CRUD realizado con AJAX, de los cuales se podrá en el momento de ingresar tener un listado completo de las farmacias, agregar nuevas, modificar existentes y borrar, asímismo está la opción de comprobar los Logs, el Tracking y la documentación de las APIs realizado con la herramienta Swagger. 
 
-## Security Vulnerabilities
+<center>
+<img src="https://i.imgur.com/mh0r0Xw.png" width="600">
+</center>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<br>
+* Diseñar e implementar un servicio que exponga en su API las operaciones CRUD (únicamente creación y lectura por id) de la entidad Farmacia y la consulta de la farmacia más cercana a un punto 🎲. 
 
-## License
+> Por lo que comprendí en un inicio al leer lo especificado planteé desarrollar el CRUD para la entidad Farmacia, luego de ello realicé una operación mediante SQL capaz de listarme mediante mi ubicación o una ubicación determinada las demás farmacias creadas que se encuentran más cerca del punto establecido, ello para posteriormente documentarlo con Swagger, además de agregar JWT. 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
->>>>>>> 3a3a831 (First commit)
+<center>
+<img src="https://i.imgur.com/73WN0V9.png" width="600">
+</center>
+<br>
+
+* Diseñar e implementar (Test Unitario) al menos un caso de prueba exitoso y uno no exitoso de dominio para la operación de creación de una farmacia. 
+
+>Aparte de estos Test Unitarios como caso de prueba exitoso y no exitoso se hizo el test correspondiente al Login de un usuario. 
+
+Para empezar a ejecutar estas pruebas unitarias será necesario que se cuente con una base de datos diferente a la especificada en el <b>.env</b>, en este caso se hará copia de la misma en el <b>.env.testing</b> con especificación a otra base de datos como prueba.
+
+Para poder correr los comandos tendremos primero que descomentar la siguiente línea encontrada en <b>test/Feature/FarmaciaAPITest.php</b>
+
+   ```sh
+   use RefreshDatabase;
+```
+
+El objetivo de esto será migrar las tablas a la nueva base de datos de prueba, luego de ello se deberá comentar...
+
+   ```sh
+   //use RefreshDatabase;
+```
+
+>Una vez se realice lo antes mencionado para poder hacer Testing se debe de ejecutar cualquiera de los siguentes dos comandos. 
+
+Ejecución (Opción 1)
+   ```sh
+   ./vendor/bin/phpunit
+```
+
+Ejecución (Opción 2)
+```sh
+php artisan test
+```
+<center>
+<img src="https://i.imgur.com/O4oWKB8.png" width="600">
+</center>
+<br>
+
+* Diseñar e implementar al menos un test unitario exitoso del cálculo de distancias. 
+
+> Para poder hacer el test unitario exitoso del cálculo de distancias al ser un método GET que recibe los parámetros indicados tanto de latitud como longitud se debe de procesar un factory en el cual se genere una farmacia y se tome su latitud como longitud para poder hacer el GET respectivo y recibir el estado 200.
+
+
+<center>
+<img src="https://i.imgur.com/wrBD7Dd.png" width="600">
+</center>
+<br>
+
+* Diseñar e implementar una web singlepage en vue.js que solicite la ubicación del usuario(ubicación del navegador web) y liste las farmacias cercanas ordenadas por distancia. (Consumir la API previamente desarrollada)
+
+
+> Al ingresar al Sistema el proyecto en Vue.js se verá empezando con la vista de Login, y es que como se había indicado cuenta con una autenticación con JWT. Por el momento recibe usuarios tipo Admin, básicamente cualquier usuario existente en la base de datos; caso contrario solicitará las credenciales para el acceso. Cabe aclarar que en caso no encuentre alguna farmacia dentro de su ubicación, se comprenderá que no hay alguna alrededor de 50 km de donde se encuentra, lo recomendable será entrar a la administración para crear tales farmacias cercanas.
+
+<center>
+<img src="https://i.imgur.com/JtHETdz.png" width="600">
+</center>
+<br>
+
+<!-- CONTACT -->
+## Contact
+
+Luis Angel Mendoza Chate - email@lmendoza27@autonoma.edu.pe
+
+Project Link: [https://github.com/lmendoza27/Farmacia_FullStack](https://github.com/lmendoza27/Farmacia_FullStack)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
