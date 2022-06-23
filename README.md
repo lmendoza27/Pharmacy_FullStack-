@@ -49,7 +49,7 @@
 
 1. Clonar el proyecto
    ```sh
-   git clone https://github.com/lmendoza27/Pharmacy_FullStack-.git
+   git clone https://github.com/lmendoza27/Pharmacy_FullStack-
    ```
 2. Crear un base de datos `farmacia`
 3. Ingresa al proyecto y realizar los comandos de ejecucion Laravel (`php 8.0 o superior`)
@@ -62,11 +62,16 @@
    php artisan jwt:secret
    php artisan migrate --seed
    ```
+4. Cambia la variable `LOG_CHANNEL` en el archivo`.env` para el registro de logs del sistema de forma diaria. Esto se puede visualizar en la ruta:`http://127.0.0.1:8000/log-viewer` o desde administración.
+   
+   ```sh
+    LOG_CHANNEL=daily
+    ```
 4. Ejecuta el servicio web
    ```sh
    php artisan serve
    ```
-4. Una vez en el navegador (`http://127.0.0.1:8000/`) inicie sesión con las credenciales predeterminadas:
+5. Una vez en el navegador (`http://127.0.0.1:8000/`) inicie sesión con las credenciales predeterminadas:
 
 > Las credenciales de abajo funcionan tanto en el proyecto de Vue.js para determinar las farmacias cercanas como para el ingreso como Administrador...
    ```txt
@@ -133,8 +138,9 @@ php artisan test
 <center>
 <img src="https://i.imgur.com/O4oWKB8.png" width="600">
 </center>
-<br>
 
+>Tal como se aprecia se están dando los Test Unitarios de manera exitosa más uno no exitoso que en este caso se trata de la creación de farmacias como se especificó.
+<br>
 * Diseñar e implementar al menos un test unitario exitoso del cálculo de distancias. 
 
 > Para poder hacer el test unitario exitoso del cálculo de distancias al ser un método GET que recibe los parámetros indicados tanto de latitud como longitud se debe de procesar un factory en el cual se genere una farmacia y se tome su latitud como longitud para poder hacer el GET respectivo y recibir el estado 200.
@@ -154,6 +160,15 @@ php artisan test
 <img src="https://i.imgur.com/JtHETdz.png" width="600">
 </center>
 <br>
+
+Cabe destacar que en caso no se contemple de manera óptima el buen funcionamiento y consumo del proyecto se deberá ingresar en <b>resources/js/components/LoginComponent.vue</b> en la etiqueta <script/> para modificar el ENDPOINT_PATH y cambiar a la ruta local del servidor que se utilice, por defecto está en:
+
+   ```sh
+   const ENDPOINT_PATH = "http://127.0.0.1:8000/api/v1/";
+```
+
+
+
 
 <!-- CONTACT -->
 ## Contact

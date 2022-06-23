@@ -4,9 +4,6 @@
          <div v-if="!registerActive" class="wallpaper-login"></div>
       </transition>
       <div class="wallpaper-register"></div>
-
-    
-
        <div v-if="logeado" class="container">
          
          <div class="row">
@@ -98,33 +95,23 @@
     <tr v-for="post in posts" :key="post.id">
       <td scope="row">{{ post.nombre }}</td>
       <td>{{post.dirección }}</td>
-      <!--<td>{{ ((post.distancia).toString().charAt(0)) }}</td>-->
-<td>{{ ((post.distancia).toString().substring(0,5)) }}</td>
+      <td>{{ ((post.distancia).toString().substring(0,5)) }}</td>
     </tr>
   </tbody>
 </table>
   </div>
 <br>
-                 
-                   <input type="button" @click="Logout" class="btn btn-primary" value="Cerrar Sesión">
-                
-                     
-                 
-                   
+        <input type="button" @click="Logout" class="btn btn-primary" value="Cerrar Sesión">   
                </div>
 
             </div>
          </div>
-
       </div>
-
-
-
    </div>
 </template>
 
 <script>
-//alert("Hola")
+
 import axios from "axios";
 
 
@@ -155,16 +142,11 @@ const ENDPOINT_PATH = "http://127.0.0.1:8000/api/v1/";
 
         getData() {
         console.log(this.longitud)
-                  /*axios.defaults.headers.common["Authorization"] =
-                "Bearer " + localStorage.getItem("token");*/
       axios.get(ENDPOINT_PATH+'farmacia?lat='+localStorage.getItem("latitud")+"&lon="+localStorage.getItem("longitud")).then(posts=>{
-         // const response = await axios.get(ENDPOINT_PATH+'farmacia?lat='+longitud+"&lon="+-76.952371).then(posts=>{
-		
       this.posts = posts.data
         console.log(this.posts);
 			});
      
-
       },
       async doLogin() {
 
@@ -181,40 +163,12 @@ const ENDPOINT_PATH = "http://127.0.0.1:8000/api/v1/";
            
             this.Me()
             this.getData();      
-            
-            //alert(response.data.access_token)
+
             }catch(error) {
               localStorage.removeItem('token')
                 console.log("Fallo")
                 this.error = true 
             }
-
-
-            /*const response = await axios.post(ENDPOINT_PATH+'login', { 
-               email: this.emailLogin,
-               password: this.passwordLogin
-            }).catch(function(error) {
-               
-               if (error.response && error.response.status === 401) {
-                console.log("Error")
-                localStorage.removeItem('token')
-                //localStorage.setItem('token', ''); 
-               }
-            })/*
-           
-
-            
-            //console.log(response);
-
-            /*if(response.data.access_token){
-          localStorage.setItem('token', response.data.access_token)
-            }
-
-            if (localStorage.getItem('token') === null){
-              this.error = true
-            }*/
-
-            
 
       },
 
@@ -223,9 +177,6 @@ const ENDPOINT_PATH = "http://127.0.0.1:8000/api/v1/";
              axios.defaults.headers.common["Authorization"] =
                 "Bearer " + localStorage.getItem("token");
       const response = await axios.post(ENDPOINT_PATH+'me', {
-         /*headers: {
-            Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE2NTU2ODY3NzAsImV4cCI6MTY1NTY5MDM3MCwibmJmIjoxNjU1Njg2NzcwLCJqdGkiOiJuOVJsRjBpYVNlRzJoUnRmIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.G4t-s6juTlz_Kerg2oZPgH_b2KROdbIBx4iLdfjCfMI'
-         }*/
       });
 
       console.log(response)
@@ -237,7 +188,6 @@ const ENDPOINT_PATH = "http://127.0.0.1:8000/api/v1/";
           console.log("Sesion fallida")
         }
 
-      //console.log("Hola")
       },
 
       async Logout() {
@@ -252,17 +202,6 @@ const ENDPOINT_PATH = "http://127.0.0.1:8000/api/v1/";
 
            
       },
-
-/*
-         //alert("Hola");
-         if (this.emailLogin === "" || this.passwordLogin === "") {
-            this.emptyFields = true;
-         } else {
-            //alert("You are now logged in");
-                  console.log(this.emailLogin);
-                  console.log(this.passwordLogin);
-         }*/
-      
       
       doRegister() {
          if (this.emailReg === "" || this.passwordReg === "" || this.confirmReg === "") {
@@ -277,8 +216,6 @@ const ENDPOINT_PATH = "http://127.0.0.1:8000/api/v1/";
    },
 
    mounted() {
-    //console.log('Componente montado: '+ this.emailLogin + " comprueba que la data está funcionando, mas no la función")
-
    this.Me()
    this.getData()
    },
@@ -292,7 +229,6 @@ const ENDPOINT_PATH = "http://127.0.0.1:8000/api/v1/";
   },
   beforeCreate() {
 
-    
     //do we support geolocation
     if(!("geolocation" in navigator)) {
       this.errorStr = 'Geolocation No está disponible.';
@@ -312,13 +248,6 @@ const ENDPOINT_PATH = "http://127.0.0.1:8000/api/v1/";
       axios.get(ENDPOINT_PATH+'farmacia?lat='+pos.coords.latitude+"&lon="+pos.coords.longitude).then(posts=>{
       this.posts = posts.data
 			});
-    /*  axios.defaults.headers.common["Authorization"] =
-      "Bearer " + localStorage.getItem("token");
-       axios.get(ENDPOINT_PATH+'farmacia?lat='+pos.coords.latitude+"&lon="+pos.coords.longitude).then(posts=>{
-	    //this.posts = posts.data
-        })*/
-		
-      //console.log(pos.coords.longitude)
     }, err => {
       this.gettingLocation = false;
       this.errorStr = err.message;

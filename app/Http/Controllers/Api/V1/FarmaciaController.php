@@ -296,22 +296,9 @@ class FarmaciaController extends Controller
      */
     public function cercanos(Request $request) {
 
-        /*$latitude       =       -12.1846355;
-        $longitude      =       70.9250774;
-        $shops          =       DB::table("farmacias");
-        $shops          =       $shops->select("*", DB::raw("6371 * acos(cos(radians($latitude))
-                                * cos(radians(latitud)) * cos(radians(longitud) - radians($longitude))
-                                + sin(radians($latitude)) * sin(radians(latitud))) AS distance"));
-        $shops          =       $shops->having('distance', '<', 20000);
-        $shops          =       $shops->orderBy('distance', 'asc');
-        $shops          =       $shops->get();
-        return $shops;*/
         $latitude = $request->lat;
         $longitude = $request->lon;
-        //$latitude = -12.1846355;
-        //$longitude = -76.952371;
-        $acos = acos(cos(deg2rad($latitude))) * cos($latitude);
-        //$acos = 45454;
+
         $cercanos = Farmacia::select("nombre","dirección", DB::raw("6371 * acos(cos(radians(" . $latitude . "))
                 * cos(radians(latitud)) * cos(radians(longitud) - radians(" . $longitude . "))
                 + sin(radians(" .$latitude. ")) * sin(radians(latitud))) AS distancia"))
@@ -319,17 +306,8 @@ class FarmaciaController extends Controller
                 ->orderBy('distancia')
                 ->get()->toArray();
 
-        // $users = Farmacia::select("nombre","dirección", DB::raw("6371 * $acos * cos(radians(latitud)) * cos(radians(longitud) - radians(" . $longitude . ")) + sin(radians(" .$latitude. ")) * sin(radians(latitud))) AS distancia"))
-        // ->having('distancia', '<', 10000)
-        // ->orderBy('distancia')
-        // ->get()->toArray();
-
-        // $cercanos = Farmacia::select(
-        //     'CALL get_cercanos('.$latitude.', '.$longitude.')'
-        //  );
-
         return $cercanos;
-        //return $acos;
+
     }
 
 }
