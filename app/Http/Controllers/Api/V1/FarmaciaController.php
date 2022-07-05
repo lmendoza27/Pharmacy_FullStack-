@@ -226,6 +226,22 @@ class FarmaciaController extends Controller
         $farmacia->latitud = $request->latitud;
         $farmacia->longitud = $request->longitud;
 
+        $rules = [
+            'nombre' => 'required',
+            'dirección' => 'required',
+            'latitud' => 'required',
+            'longitud' => 'required'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return [
+                'created' => false,
+                'errors'  => $validator->errors()->all()
+            ];
+        }
+
         $farmacia->save();
         return $farmacia;
     }
@@ -253,6 +269,7 @@ class FarmaciaController extends Controller
 
     public function destroy($id)
     {
+        
         $farmacia = Farmacia::destroy($id);
         return $farmacia;
     }
@@ -298,6 +315,26 @@ class FarmaciaController extends Controller
 
         $latitude = $request->lat;
         $longitude = $request->lon;
+
+        $rules = [
+            'lat' => ['required','regex:/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/'],
+            'lon' => ['required','regex:/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/']
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+ 
+
+        if ($validator->fails()) {
+
+ 
+
+            return [
+                'created' => false,
+                'advice' => 'Recuerda que el parámetro "lat" toma un mínimo de -90 con un máximo de 90, por otra parte, el parámetro "lon" toma un mínimo de -180 con un máximo de 180',
+                'errors'  => $validator->errors()->all()
+            ];
+        }
 
         $cercanos = Farmacia::select("nombre","dirección", DB::raw("6371 * acos(cos(radians(" . $latitude . "))
                 * cos(radians(latitud)) * cos(radians(longitud) - radians(" . $longitude . "))
